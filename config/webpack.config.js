@@ -4,6 +4,7 @@
 const webpack = require('webpack');
 const path = require('path')
 const merge = require('webpack-merge')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const ROOT = path.join(__dirname, "..");
 const CLIENT = path.join(ROOT, "client");
@@ -18,12 +19,12 @@ const common = {
         path: path.join(ROOT, 'public'),
         publicPath: '/assets/static'
     },
-    // resolve: {
-    //     extention: ['.js', '.jsx'],
-    //     modules: [
-    //         'node_modules',
-    //     ]
-    // },
+    resolve: {
+        extensions: ['.js', '.jsx'],
+        modules: [
+            'node_modules',
+        ]
+    },
     module: {
         rules: [
             {
@@ -43,7 +44,7 @@ const common = {
                 use: 'json-loader'
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|svg)$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -73,12 +74,12 @@ const dev = {
 const prod = {
     mode: "production",
     devtool: 'source-map',
-    // plugins: [
-    //     new webpack.DefinePlugin({
-    //         'process.env.NODE_ENV': JSON.stringify('production')
-    //     }),
-    //     new webpack.optimize.UglifyJsPlugin()
-    // ]
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
+        }),
+        new UglifyJsPlugin()
+    ]
 }
 
 if (TARGET === "start" ||
