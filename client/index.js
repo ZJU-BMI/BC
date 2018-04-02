@@ -1,46 +1,70 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-import { Menu, Icon } from "antd";
-const SubMenu = Menu.SubMenu;
-const ItemGroup = Menu.ItemGroup;
+import { Layout, Menu, Icon } from "antd";
+const { Header, Sider, Content } = Layout;
 
-class App extends React.Component {
+import "./index.css"
+
+class SiderDemo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            collapsed: false,
+        }
+        this.toggle = this.toggle.bind(this);
+    }
+
+    toggle() {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    }
+
     render() {
         return (
-            <div>
-                <h1>Hello world!</h1>
-            </div>
+            <Layout>
+                <Sider
+                    trigger={null}
+                    collapsible
+                    collapsed={this.state.collapsed}
+                >
+                    <div className="logo" />
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                        <Menu.Item key="1"> 
+                            <Icon type="user"/>
+                            <span>nav 1</span>
+                        </Menu.Item>
+                        <Menu.Item key="2">
+                            <Icon type="video-camera" />
+                            <span>nav 2</span>
+                        </Menu.Item>
+                        <Menu.Item key="3">
+                            <Icon type="upload" />
+                            <span>nav 3</span>
+                        </Menu.Item>
+                    </Menu>
+                </Sider>
+            
+                <Layout>
+                    <Header style={{ background: '#fff', padding: 0}} >
+                        <Icon 
+                            className="trigger"
+                            type = {this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                            onClick={this.toggle}
+                        />
+                    </Header>
+                    <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
+                        content
+                    </Content>
+                </Layout>
+            </Layout>
         );
     }
 }
 
-class Sider extends React.Component {
-
-    render() {
-      return (
-        <Menu
-          style={{ width: 256 }}
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          mode="inline"
-        >
-            <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-                <ItemGroup key="g1" title="Item 1">
-                    <Menu.Item key="5">Option 5</Menu.Item>
-                    <Menu.Item key="6">Option 6</Menu.Item>
-                </ItemGroup>
-                <ItemGroup key="g2" title="Item 2">
-                    <Menu.Item key="7">Option 7</Menu.Item>
-                    <Menu.Item key="8">Option 8</Menu.Item>
-                </ItemGroup>
-            </SubMenu>
-        </Menu>
-      );
-    }
-  }
 
 ReactDOM.render(
-    <Sider />,
+    <SiderDemo />,
     document.getElementById('root')
 );
