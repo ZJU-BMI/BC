@@ -6,6 +6,8 @@ import { Layout, Menu, Icon, Card, Avatar } from "antd";
 const { Header, Sider, Content } = Layout;
 const { Meta } = Card;
 
+import MySteps from './mySteps'
+
 import "./index.css"
 
 class CardContent extends React.Component {
@@ -31,7 +33,7 @@ class CardContent extends React.Component {
 function Nav2() {
     return (
         <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280}}>
-            Nav 2 content
+            <MySteps />
         </Content>
     )
 }

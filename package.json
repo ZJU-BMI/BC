@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "antd": "^3.4.0",
+    "classnames": "^2.2.5",
     "component-classes": "^1.2.6",
     "component-indexof": "^0.0.3",
     "dom-align": "^1.6.7",
