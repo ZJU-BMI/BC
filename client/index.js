@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Link, Switch, withRouter} from "react-router-dom"
+import { HashRouter as Router, Route, Link, Switch, withRouter} from "react-router-dom"
 
 import { Layout, Menu, Icon, Card, Avatar } from "antd";
 const { Header, Sider, Content } = Layout;
