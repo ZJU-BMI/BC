@@ -1,17 +1,20 @@
 import React from 'react';
 
-import { Steps, Button, Message } from 'antd';
+import { Steps, Button, Message, Icon } from 'antd';
 const Step = Steps.Step;
 
 const steps = [{
     title: 'First',
     content: 'First-content',
+    icon: 'user',
 }, {
     title: 'Second',
     content: 'Second-content',
+    icon: 'solution',
 }, {
     title: 'Last',
     content: 'Last-content',
+    icon: 'smile-o',
 }]
 
 class MySteps extends React.Component {
@@ -38,7 +41,7 @@ class MySteps extends React.Component {
         return (
             <div>
                 <Steps current={current}>
-                    {steps.map(item => <Step key={item.title} title={item.title} />)}
+                    {steps.map(item => <Step key={item.title} title={item.title} icon={<Icon type={item.icon} />} />)}
                 </Steps>
                 <div className="steps-content">{steps[this.state.current].content}</div>
                 <div className="steps-action">
