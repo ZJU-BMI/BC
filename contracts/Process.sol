@@ -1,7 +1,6 @@
 pragma solidity ^0.4.21;
 
-import "./Patient";
-import "./Hospital";`
+import "./Hospital.sol";
 
 contract Process {
     address public patient; // Patient who create the instance of Process
@@ -13,9 +12,9 @@ contract Process {
 
     State public present;
     State public previous;
-    State public next;
+    // State public next;
 
-    function Process() {
+    function Process() public{
         patient = msg.sender;
         present = State.Visit;
     }
@@ -28,9 +27,14 @@ contract Process {
         _;
     }
 
-    function changeState() public beforeEnd(present){
+    modifier requireOwner(address _patient) {
+        require(msg.sender == _patient);
+        _;
+    }
 
-        emit StateChanged(msg.sender);
+    function changeState() public beforeEnd(present) requireOwner(patient){
+
+        emit StateChanged(patient);
     }
 
 }

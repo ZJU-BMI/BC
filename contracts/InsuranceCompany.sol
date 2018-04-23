@@ -1,11 +1,13 @@
 pragma solidity ^0.4.21;
 
-import "./Permission"
-import "./Patient"
+import "./Permission.sol"
+import "./Patient.sol"
 
 contract InsuranceCompany {
 
-    function payout(Patient patient) public {
+    event Paid(Patient patient);
 
+    function payout(Patient patient) public {
+        emit Paid(patient);
     }
 }
