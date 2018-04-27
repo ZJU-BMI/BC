@@ -1,12 +1,12 @@
 pragma solidity ^0.4.21;
 
 import "./Process.sol";
-import "./Permission.sol";
+import "./Hospital.sol";
 
 contract Patient {
     bytes32 public name;
     uint public age;
-
+    
     Process public process;
 
     function Patient(bytes32 _name, uint _age) public{
@@ -22,14 +22,19 @@ contract Patient {
     }
 
     function startProcess() public{
-        if (address(process) != 0x0000000000000000000000000000000000000000) {
+        if (address(process) != 0x0000000000000000000000000000000000000000 || _compaireString(process.getPresentState(), "END") ) {
             emit RestartProcess(this);
             return;
         }
         process = new Process();
     }
+    
+    function _compaireString(bytes32 a, bytes32 b) private pure returns (bool) {
+        return keccak256(a) == keccak256(b);
+    }
 
-    function changeState() public ProcessStarted(process){
-        process.changeState();
+    // result由nodejs后端来传入。
+    function changeState(uint result) public ProcessStarted(process){
+        process.changeState(result);
     }
 }
