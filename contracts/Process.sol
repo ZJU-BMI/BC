@@ -29,6 +29,7 @@ contract Process {
 
     event ProcessEnd(address patient);
     event StateChanged(address patient);
+    event StateChangedIncorrectly(address patient);
 
     modifier beforeEnd(State _state) {
         require(_state != State.End);
@@ -67,6 +68,8 @@ contract Process {
             _intoNext(result);
         } else if (present == State.Referreal) {
             _referrealNext(result);
+        } else if (present == State.DevelopTreatmentMethods) {
+            _developTreatmentMethodsToNext(result);
         }
        
         previous = temp;
@@ -76,6 +79,7 @@ contract Process {
     function forceEnd() public {
         previous = present;
         present = State.End;
+        emit ProcessEnd(patient);
     }
     
     function _visitNext(uint result) private {
@@ -94,6 +98,8 @@ contract Process {
             present = State.Referreal;
         } else if (result == 3) {
             present = State.DevelopTreatmentMethods;
+        } else {
+            emit StateChangedIncorrectly(patient);
         }
     }
     
@@ -101,7 +107,9 @@ contract Process {
         if (result == 4) {
             present = State.Referreal;
         } else if (result == 5) {
-            present = State.ReceiveTreatment;   
+            present = State.ReceiveTreatment;
+        } else {
+            emit StateChangedIncorrectly(patient);
         }
     }
     
@@ -111,6 +119,18 @@ contract Process {
         } else if (result == 7) {
             present = State.End;
             emit ProcessEnd(patient);
+        } else {
+            emit StateChangedIncorrectly(patient);
+        }
+    }
+
+    function _developTreatmentMethodsToNext(uint result) private {
+        if (result == 8) {
+            present = State.ReceiveTreatment;
+        } else if (result == 9) {
+            present = State.Out;
+        } else {
+            emit StateChangedIncorrectly(patient);
         }
     }
 
