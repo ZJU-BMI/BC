@@ -1,7 +1,5 @@
 pragma solidity ^0.4.21;
 
-import "./Hospital.sol";
-
 contract Process {
     address public patient; // Patient who create the instance of Process
     

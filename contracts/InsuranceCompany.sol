@@ -1,7 +1,7 @@
 pragma solidity ^0.4.21;
 
-import "./Permission.sol"
-import "./Patient.sol"
+import "./Permission.sol";
+import "./Patient.sol";
 
 contract InsuranceCompany {
 

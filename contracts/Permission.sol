@@ -2,11 +2,11 @@ pragma solidity ^0.4.21;
 
 contract Permission {
     
-    function grant() public {
+    function grant() public pure {
         
     }
 
-    function withdraw() public {
+    function withdraw() public pure {
         
     }
 }

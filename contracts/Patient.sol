@@ -1,7 +1,6 @@
 pragma solidity ^0.4.21;
 
 import "./Process.sol";
-import "./Hospital.sol";
 
 contract Patient {
     bytes32 public name;
