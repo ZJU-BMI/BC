@@ -72,6 +72,11 @@ contract Process {
         previous = temp;
         emit StateChanged(msg.sender);
     }
+
+    function forceEnd() public {
+        previous = present;
+        present = State.End;
+    }
     
     function _visitNext(uint result) private {
         if (result == 0) {

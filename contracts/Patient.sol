@@ -21,11 +21,21 @@ contract Patient {
     }
 
     function startProcess() public{
-        if (address(process) != 0x0000000000000000000000000000000000000000 || _compaireString(process.getPresentState(), "END") ) {
+        if (address(process) != 0x0000000000000000000000000000000000000000) {
+            if (_compaireString(process.getPresentState(), "END")) {
+                process = new Process();
+                return;
+            }
             emit RestartProcess(this);
             return;
         }
         process = new Process();
+    }
+
+    function forceEndProcess() public {
+        if (address(process) != 0x0000000000000000000000000000000000000000) {
+            process.forceEnd();
+        }
     }
     
     function _compaireString(bytes32 a, bytes32 b) private pure returns (bool) {
