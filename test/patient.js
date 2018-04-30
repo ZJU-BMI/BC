@@ -1,7 +1,7 @@
 var Patient = artifacts.require('Patient');
 var Process = artifacts.require('Process');
 
-var stateMap = require('../server/stateMap.js');
+var stateMap = require('../server/util/stateMap.js');
 
 contract('Patient', function(accounts) {
     var patient;

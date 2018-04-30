@@ -19,7 +19,7 @@ contract Process {
     State public previous;
     // State public next;
     
-    uint hospitalLevel;
+    uint public hospitalLevel;
 
     function Process() public{
         patient = msg.sender;
@@ -97,7 +97,7 @@ contract Process {
         } else if (result == 2) {
             present = State.Referreal;
         } else if (result == 3) {
-            present = State.DevelopTreatmentMethods;
+            present = State.ReceiveTreatment;
         } else {
             emit StateChangedIncorrectly(patient);
         }
@@ -126,9 +126,7 @@ contract Process {
 
     function _developTreatmentMethodsToNext(uint result) private {
         if (result == 8) {
-            present = State.ReceiveTreatment;
-        } else if (result == 9) {
-            present = State.Out;
+            present = State.SelectHospital;
         } else {
             emit StateChangedIncorrectly(patient);
         }

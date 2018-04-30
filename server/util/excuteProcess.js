@@ -4,9 +4,10 @@ module.exports = {
     selectToOut: 1,
     visitToSelectHospital: 1,
     selectToReferreal: 2,
-    selectToDevelopTreatment: 3,
+    selectToReceiveTreament: 3,
     intoToReferreal: 4,
     intoToReceiveTreatment: 5,
     referrealToDevelopTreatment: 6,
-    referrealToEnd: 7
+    referrealToEnd: 7,
+    developToSelect: 8,
 }
