@@ -2,11 +2,12 @@
 
 ## install guide
 
-If you havn't installed truffle
-run
+If you havn't installed truffle, run
 ```shell
 npm install -g truffle
 ```
+
+install dependencies
 
 ```shell
 npm install
@@ -22,6 +23,11 @@ test contracts
 
 ```shell
 truffle test
+```
+
+build project
+```shell
+npm build
 ```
 
 run server 

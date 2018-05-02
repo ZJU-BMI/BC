@@ -22,7 +22,14 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, 'assets' , 'index.html'));
 });
 
+app.get('/simple', function(req, res) {
+    res.send('simple response');
+})
+
 app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath
 }));
+
+app.use('/deploy', require('./routes/deploy.js'));
+app.use('/excute', require('./routes/excuteProcess.js'));
