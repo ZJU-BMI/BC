@@ -8,7 +8,7 @@ contract Patient {
     
     Process public process;
 
-    function Patient(bytes32 _name, uint _age) public{
+    function contructor(bytes32 _name, uint _age) public{
         name = _name;
         age = _age;
     }
