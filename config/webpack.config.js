@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const path = require('path')
 const merge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+var nodeExternals = require('webpack-node-externals')
 
 const ROOT = path.join(__dirname, "..");
 const CLIENT = path.join(ROOT, "client");
@@ -60,7 +61,9 @@ const common = {
                 ]
             }
         ]
-    }
+    },
+    target: 'node',
+    externals: [nodeExternals()],
 }
 
 const dev = {
@@ -83,7 +86,8 @@ const prod = {
 }
 
 if (TARGET === "start" ||
-    TARGET === "test") {
+    TARGET === "test" ||
+    TARGET === "pack") {
     module.exports = merge(common, dev)
 } else if (TARGET === "build:client") {
     module.exports = merge(common, prod)

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var myContracts = require('../interact/myContract.s.js')
+var myContracts = require('../interact/myContracts.js')
 
 router.post('/new-patient', function(req, res, next) {
     myContracts.patient.new(req.name, req.age).then(function(p) {

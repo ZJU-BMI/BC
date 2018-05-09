@@ -21,7 +21,7 @@ contract Process {
     
     uint public hospitalLevel;
 
-    function contructor() public{
+    constructor() public{
         patient = msg.sender;
         present = State.Visit;
         hospitalLevel = 0;
