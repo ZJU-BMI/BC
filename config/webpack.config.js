@@ -61,9 +61,8 @@ const common = {
                 ]
             }
         ]
-    },
-    target: 'node',
-    externals: [nodeExternals()],
+    }
+    
 }
 
 const dev = {
@@ -72,6 +71,16 @@ const dev = {
     devServer: {
         contentBasse: './dist'
     }
+}
+
+const test = {
+    mode: "development",
+    devtool: "inline-source-map",
+    devServer: {
+        contentBasse: './dist'
+    },
+    target: 'node',
+    externals: [nodeExternals()],
 }
 
 const prod = {
@@ -85,10 +94,10 @@ const prod = {
     ]
 }
 
-if (TARGET === "start" ||
-    TARGET === "test" ||
-    TARGET === "pack") {
+if (TARGET === "start") {
     module.exports = merge(common, dev)
+} else if (TARGET === "test") {
+    module.exports = merge(common, test)
 } else if (TARGET === "build:client") {
     module.exports = merge(common, prod)
 } else {

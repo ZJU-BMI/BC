@@ -1,5 +1,5 @@
 var express = require('express');
-var router = epress.Router();
+var router = express.Router();
 
 var myContracts = require('../interact/myContracts.js');
 

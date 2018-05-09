@@ -10,14 +10,6 @@ const compiler = webpack(config);
 const port = 3000;
 const app = express();
 
-app.listen(port, function (error) {
-    if (error) {
-        console.log(error);
-    } else {
-        open(`http://localhost:${port}`);
-    }
-});
-
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, 'assets' , 'index.html'));
 });
@@ -31,5 +23,13 @@ app.use(require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath
 }));
 
-app.use('/deploy', require('./routes/deploy.js'));
-app.use('/excute', require('./routes/excuteProcess.js'));
+app.listen(port, function (error) {
+    if (error) {
+        console.log(error);
+    } else {
+        //open(`http://localhost:${port}`);
+        console.log(`listen to http://localhost:${port}`);
+    }
+});
+
+export default app;

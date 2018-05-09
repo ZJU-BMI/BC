@@ -5,7 +5,7 @@ var myContracts = require('../interact/myContracts.js')
 
 router.post('/new-patient', function(req, res, next) {
     myContracts.patient.new(req.name, req.age).then(function(p) {
-        res.send(p.address);
+        res.send('address');
     });
 });
 
