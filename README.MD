@@ -2,9 +2,12 @@
 
 ## prerequisite
 
-![](https://img.shields.io/badge/ubuntu-16.04-red.svg)
-![](https://img.shields.io/badge/node-v8-red.svg)
-![](https://img.shields.io/badge/solitity-v0.4.23-red.svg)
+![](https://img.shields.io/badge/ubuntu-16.04-blue.svg)
+![](https://img.shields.io/badge/node-v8-blue.svg)
+![](https://img.shields.io/badge/solitity-v0.4.23-blue.svg)
+
+![](https://img.shields.io/badge/compile-passed-red.svg)
+![](https://img.shields.io/badge/test-failed-red.svg)
 
 ## install guide
 
