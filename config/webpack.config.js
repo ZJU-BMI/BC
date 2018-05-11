@@ -7,7 +7,7 @@ const merge = require('webpack-merge')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 var nodeExternals = require('webpack-node-externals')
 
-const ROOT = path.join(__dirname, "..");
+const ROOT = path.resolve(__dirname, "..");
 const CLIENT = path.join(ROOT, "client");
 const TARGET = process.env.npm_lifecycle_event
 
@@ -74,12 +74,16 @@ const dev = {
 }
 
 const test = {
+    context: path.resolve(__dirname, '..'),
     mode: "development",
     devtool: "inline-source-map",
     devServer: {
         contentBasse: './dist'
     },
     target: 'node',
+    node: {
+        __dirname: true,
+    },
     externals: [nodeExternals()],
 }
 

@@ -7,8 +7,6 @@ var assert = require('assert');
 
 chai.use(chaiHttp);
 
-console.log('testing');
-
 describe('simple', function() {
     it('should give simple response', function() {
         chai.request(server)

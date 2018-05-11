@@ -1,6 +1,5 @@
 const Web3 = require('web3');
-const provider = new Web3.providers.HttpProvider("http://localhost:7545");
-const web3 = new Web3(provider);
+const web3 = new Web3("http://localhost:7545");
 
 var contract = require('truffle-contract');
 
@@ -16,7 +15,7 @@ function initProcess() {
         unlinked_binary: processContract.bytecode
     });
 
-    Process.setProvider(provider);
+    Process.setProvider(web3.currentProvider);
     return Process;
 }
 
@@ -29,7 +28,7 @@ function initPatient() {
         unlinked_binary: patientContract.bytecode
     });
     
-    Patient.setProvider(provider);
+    Patient.setProvider(web3.currentProvider);
     return Patient;
 }
 
